@@ -241,16 +241,16 @@
         </div>
         <form class="contact__form" id="contactForm">
           <div class="form-group">
-            <input type="text" placeholder="Tu nombre" required>
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
           </div>
           <div class="form-group">
-            <input type="email" placeholder="Tu email" required>
+            <input type="email" name="email" placeholder="Tu email" required>
           </div>
           <div class="form-group">
-            <input type="text" placeholder="Tu empresa o marca">
+            <input type="text" name="empresa" placeholder="Tu empresa o marca">
           </div>
           <div class="form-group">
-            <select required>
+            <select name="servicio" required>
               <option value="" disabled selected>¿Que servicio te interesa?</option>
               <option>Publicidad Digital (Paid Media)</option>
               <option>Identidad de Marca</option>
@@ -263,7 +263,7 @@
             </select>
           </div>
           <div class="form-group">
-            <textarea rows="4" placeholder="Cuentanos sobre tu proyecto..." required></textarea>
+            <textarea name="mensaje" rows="4" placeholder="Cuentanos sobre tu proyecto..." required></textarea>
           </div>
           <button type="submit" class="btn btn--primary btn--full">Enviar mensaje</button>
         </form>

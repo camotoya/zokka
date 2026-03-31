@@ -45,15 +45,48 @@ window.addEventListener('scroll', () => {
 });
 
 // ── Form handler ──
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUtBjUN4decvFMH9z4wLs66mpaBKVSjVthxDjgkYKlpJkSQjmHTEGIcLlmC9ztYsVk/exec';
+
 document.getElementById('contactForm').addEventListener('submit', (e) => {
   e.preventDefault();
-  const btn = e.target.querySelector('button[type="submit"]');
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
   const originalText = btn.textContent;
-  btn.textContent = 'Enviado!';
-  btn.style.background = 'linear-gradient(135deg, #84cc16 0%, #06b6d4 100%)';
-  setTimeout(() => {
-    btn.textContent = originalText;
-    btn.style.background = '';
-    e.target.reset();
-  }, 3000);
+
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  const data = {
+    nombre: form.querySelector('input[type="text"]').value,
+    email: form.querySelector('input[type="email"]').value,
+    empresa: form.querySelectorAll('input[type="text"]')[1].value,
+    servicio: form.querySelector('select').value,
+    mensaje: form.querySelector('textarea').value,
+  };
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+    .then(() => {
+      btn.textContent = 'Enviado!';
+      btn.style.background = 'linear-gradient(135deg, #84cc16 0%, #06b6d4 100%)';
+      form.reset();
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    })
+    .catch(() => {
+      btn.textContent = 'Error, intenta de nuevo';
+      btn.style.background = '#ef4444';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    });
 });
