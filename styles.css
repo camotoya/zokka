@@ -139,7 +139,7 @@ ul { list-style: none; }
   width: auto;
 }
 .nav__logo-wordmark {
-  height: 48px;
+  height: 96px;
   width: auto;
 }
 .nav__links {
@@ -518,7 +518,7 @@ ul { list-style: none; }
   width: auto;
 }
 .footer__logo-wordmark {
-  height: 40px;
+  height: 80px;
   width: auto;
 }
 .footer__copy {
