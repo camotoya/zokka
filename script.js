@@ -79,6 +79,13 @@ document.getElementById('contactForm').addEventListener('submit', (e) => {
           value: 1,
         });
       }
+      // Enviar evento Lead a Meta Pixel
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: data.servicio,
+          content_category: 'formulario_contacto',
+        });
+      }
       btn.textContent = 'Enviado!';
       btn.style.background = 'linear-gradient(135deg, #84cc16 0%, #06b6d4 100%)';
       form.reset();
