@@ -138,12 +138,9 @@ ul { list-style: none; }
   height: 44px;
   width: auto;
 }
-.nav__logo-text {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: var(--black);
+.nav__logo-wordmark {
+  height: 24px;
+  width: auto;
 }
 .nav__links {
   display: flex;
@@ -520,12 +517,9 @@ ul { list-style: none; }
   height: 36px;
   width: auto;
 }
-.footer__logo-text {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: var(--black);
+.footer__logo-wordmark {
+  height: 20px;
+  width: auto;
 }
 .footer__copy {
   font-size: 0.85rem;
