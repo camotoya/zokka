@@ -34,15 +34,35 @@ document.querySelectorAll(
   observer.observe(el);
 });
 
-// ── Nav background on scroll ──
+// ── Nav scroll state ──
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    nav.style.boxShadow = '0 1px 12px rgba(0,0,0,0.06)';
+  if (window.scrollY > 80) {
+    nav.classList.add('scrolled');
   } else {
-    nav.style.boxShadow = 'none';
+    nav.classList.remove('scrolled');
   }
 });
+
+// ── Active section indicator ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav__link:not(.nav__link--cta)');
+
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  },
+  { rootMargin: '-40% 0px -60% 0px' }
+);
+
+sections.forEach(section => sectionObserver.observe(section));
 
 // ── Form handler ──
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypoW9aBeY-aKSb-SjGulKsM6Dn3jZFfd8ydyZcNRvrG2zcjFFjdHOoG4vmjyDJbco0/exec';
