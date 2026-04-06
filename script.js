@@ -1,27 +1,25 @@
 // ── Mobile nav toggle ──
 const toggle = document.getElementById('navToggle');
-const links = document.getElementById('navLinks');
+const navLinksEl = document.getElementById('navLinks');
 
 toggle.addEventListener('click', () => {
-  links.classList.toggle('active');
+  navLinksEl.classList.toggle('active');
   toggle.classList.toggle('open');
 });
 
 // Close menu on link click
-links.querySelectorAll('a').forEach(a => {
+navLinksEl.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
-    links.classList.remove('active');
+    navLinksEl.classList.remove('active');
     toggle.classList.remove('open');
   });
 });
 
-// ── Scroll animations ──
-const observer = new IntersectionObserver(
+// ── Scroll fade-up animations ──
+const fadeObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   },
   { threshold: 0.1 }
@@ -31,7 +29,7 @@ document.querySelectorAll(
   '.service-card, .founder-card, .step, .contact__info, .contact__form'
 ).forEach(el => {
   el.classList.add('fade-up');
-  observer.observe(el);
+  fadeObserver.observe(el);
 });
 
 // ── Nav scroll state ──
@@ -63,6 +61,70 @@ const sectionObserver = new IntersectionObserver(
 );
 
 sections.forEach(section => sectionObserver.observe(section));
+
+// ── Hero word-by-word animation ──
+const heroWords = document.querySelectorAll('.anim-word');
+heroWords.forEach((word, i) => {
+  setTimeout(() => word.classList.add('revealed'), 200 + i * 100);
+});
+
+// ── Counter animation ──
+const counters = document.querySelectorAll('[data-count]');
+let countersDone = false;
+
+const counterObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !countersDone) {
+        countersDone = true;
+        counters.forEach(el => {
+          const target = parseInt(el.dataset.count);
+          const suffix = el.dataset.suffix || '';
+          const duration = 2000;
+          const start = performance.now();
+
+          function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+            el.textContent = current + suffix;
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+        });
+      }
+    });
+  },
+  { threshold: 0.3 }
+);
+
+const statsEl = document.querySelector('.hero__stats');
+if (statsEl) counterObserver.observe(statsEl);
+
+// ── Custom cursor ──
+const cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(pointer: fine)').matches) {
+  let mouseX = 0, mouseY = 0;
+  let cursorX = 0, cursorY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!cursor.classList.contains('visible')) cursor.classList.add('visible');
+  });
+
+  document.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
+
+  function animateCursor() {
+    cursorX += (mouseX - cursorX) * 0.15;
+    cursorY += (mouseY - cursorY) * 0.15;
+    cursor.style.left = cursorX + 'px';
+    cursor.style.top = cursorY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  requestAnimationFrame(animateCursor);
+}
 
 // ── Form handler ──
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypoW9aBeY-aKSb-SjGulKsM6Dn3jZFfd8ydyZcNRvrG2zcjFFjdHOoG4vmjyDJbco0/exec';
