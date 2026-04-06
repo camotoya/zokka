@@ -171,7 +171,7 @@ ul { list-style: none; }
 .nav__logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 2px;
   transition: transform 0.25s ease-out;
 }
 .nav__logo:hover {
@@ -721,7 +721,7 @@ ul { list-style: none; }
 .footer__logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 2px;
   margin-bottom: 16px;
   transition: transform 0.25s ease-out;
 }
