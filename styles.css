@@ -565,13 +565,16 @@ ul { list-style: none; }
 .founder-card__links {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 .founder-card__badge {
-  transform: scale(0.55);
-  transform-origin: left center;
-  max-height: 150px;
+  transform: scale(0.35);
+  transform-origin: left top;
+  width: 53px;
+  height: 95px;
   overflow: hidden;
+  margin: 0;
 }
 
 /* ── Process ── */
