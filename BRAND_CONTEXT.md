@@ -140,6 +140,26 @@ Minimalismo blanco y negro como base — con explosiones de color como acento. E
 - "Traemos las mejores prácticas de las grandes compañías al alcance de tu marca."
 - "Strategy. Identity. Precision. Growth."
 
+### Descripción oficial (Google Business Profile — SIN contacto)
+```
+Agencia de marketing digital con sede en México, Colombia y Estados Unidos: IA-native y full data-driven. No hacemos marcas solo espectaculares — hacemos marcas espectaculares que crecen.
+
+Usamos inteligencia artificial y data en tiempo real para cada decisión estratégica y operativa. Traemos el know-how de consumo masivo (Unilever), startups unicornio (Habi), construcción, adhesivos y agencias de publicidad a marcas que quieren crecer con método, no con suerte.
+
+Servicios: Meta Ads, Google Ads, TikTok Ads, branding, redes sociales, SEO, growth hacking, contenido con IA, landing pages y consultoría estratégica.
+
+Trabajamos con marcas ambiciosas de México, Colombia, Estados Unidos y Latinoamérica. Consulta inicial gratuita.
+```
+
+**Posicionamiento clave consolidado**: "IA-native y full data-driven. No hacemos marcas solo espectaculares — hacemos marcas espectaculares que crecen."
+
+**Nota**: Google Business Profile rechaza descripciones con teléfono, email o URL (van en campos dedicados). Para Instagram, LinkedIn, Twitter bio u otras plataformas que SÍ permiten contacto, se puede agregar el bloque:
+```
+📧 hola@makkete.com
+📱 +52 55 2128 9080
+🌐 makkete.com
+```
+
 ---
 
 ## 8. Stack tecnológico
