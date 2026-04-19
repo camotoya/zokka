@@ -125,6 +125,30 @@ const statsEl = document.querySelector('.hero__stats');
 if (statsEl) counterObserver.observe(statsEl);
 
 
+// ── WhatsApp click tracking ──
+document.querySelectorAll('.wa-link').forEach((link) => {
+  link.addEventListener('click', () => {
+    const source = link.dataset.waSource || 'unknown';
+    // GA4
+    if (typeof gtag === 'function') {
+      gtag('event', 'whatsapp_click', {
+        event_category: 'contacto',
+        event_label: source,
+        value: 1,
+      });
+      // Google Ads conversion — pendiente crear evento en Ads UI para obtener label
+      // gtag('event', 'conversion', { send_to: 'AW-18069208452/XXXX_WA_LABEL' });
+    }
+    // Meta Pixel
+    if (typeof fbq === 'function') {
+      fbq('track', 'Contact', {
+        contact_method: 'whatsapp',
+        source: source,
+      });
+    }
+  });
+});
+
 // ── Form handler ──
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypoW9aBeY-aKSb-SjGulKsM6Dn3jZFfd8ydyZcNRvrG2zcjFFjdHOoG4vmjyDJbco0/exec';
 
