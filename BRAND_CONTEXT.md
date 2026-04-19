@@ -176,6 +176,7 @@ Trabajamos con marcas ambiciosas de México, Colombia, Estados Unidos y Latinoam
 - **Google Analytics 4:** G-SY2KGT19T1
 - **Google Ads:** AW-18069208452 (cuenta "Pixeles Makkete")
   - Conversión "Registro Formulario": label `aE-xCKiw6pwcEIT7iKhD`
+  - Conversión "Click WhatsApp": label `IO_iCJGakp8cEIT7iKhD` (valor $500 MXN por click)
 - **Meta Pixel:** 1258734292500342
 
 ### Herramientas activas

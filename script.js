@@ -129,15 +129,16 @@ if (statsEl) counterObserver.observe(statsEl);
 document.querySelectorAll('.wa-link').forEach((link) => {
   link.addEventListener('click', () => {
     const source = link.dataset.waSource || 'unknown';
-    // GA4
+    // GA4 + Google Ads conversion
     if (typeof gtag === 'function') {
       gtag('event', 'whatsapp_click', {
         event_category: 'contacto',
         event_label: source,
         value: 1,
       });
-      // Google Ads conversion — pendiente crear evento en Ads UI para obtener label
-      // gtag('event', 'conversion', { send_to: 'AW-18069208452/XXXX_WA_LABEL' });
+      gtag('event', 'conversion', {
+        send_to: 'AW-18069208452/IO_iCJGakp8cEIT7iKhD',
+      });
     }
     // Meta Pixel
     if (typeof fbq === 'function') {
