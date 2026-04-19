@@ -142,7 +142,7 @@ Minimalismo blanco y negro como base — con explosiones de color como acento. E
 
 ### Descripción oficial (Google Business Profile — SIN contacto)
 ```
-Agencia de marketing digital con sede en México, Colombia y Estados Unidos: IA-native y full data-driven. No hacemos marcas solo espectaculares — hacemos marcas espectaculares que crecen.
+Agencia de marketing digital con sede en México y Colombia: IA-native y full data-driven. No hacemos marcas solo espectaculares — hacemos marcas espectaculares que crecen.
 
 Usamos inteligencia artificial y data en tiempo real para cada decisión estratégica y operativa. Traemos el know-how de consumo masivo (Unilever), startups unicornio (Habi), construcción, adhesivos y agencias de publicidad a marcas que quieren crecer con método, no con suerte.
 
