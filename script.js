@@ -502,71 +502,172 @@ slides.forEach((s, i) => {
 });
 
 // ═══════════════════════════════════════════════════════════════
-// EDIT MODE (Tweaks)
+// MOBILE NAV TOGGLE
 // ═══════════════════════════════════════════════════════════════
-const tweaksPanel = document.getElementById('tweaks');
-const tweaksToggle = document.getElementById('tweaksToggle');
-const tweaksClose = document.getElementById('tweaksClose');
-
-// Listener first, then announce
-window.addEventListener('message', (e) => {
-  const msg = e.data || {};
-  if (msg.type === '__activate_edit_mode') {
-    tweaksToggle.style.display = 'inline-flex';
-  } else if (msg.type === '__deactivate_edit_mode') {
-    tweaksToggle.style.display = 'none';
-    tweaksPanel.classList.remove('is-open');
-  }
-});
-window.parent.postMessage({ type: '__edit_mode_available' }, '*');
-
-tweaksToggle.addEventListener('click', () => {
-  tweaksPanel.classList.add('is-open');
-  tweaksToggle.style.display = 'none';
-});
-tweaksClose.addEventListener('click', () => {
-  tweaksPanel.classList.remove('is-open');
-  tweaksToggle.style.display = 'inline-flex';
-});
-
-// Autoplay options
-document.querySelectorAll('[data-tweak="autoplay"]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const v = btn.dataset.value;
-    document.querySelectorAll('[data-tweak="autoplay"]').forEach(b => b.classList.toggle('is-active', b === btn));
-    pushEdits({ autoplay: v });
-    if (v === 'scroll-stop') scrollStopped = window.scrollY > 60;
-    restartAutoplay();
+const navToggle = document.getElementById('navToggle');
+const navLinksEl = document.getElementById('navLinks');
+if (navToggle && navLinksEl) {
+  navToggle.addEventListener('click', () => {
+    navLinksEl.classList.toggle('active');
+    navToggle.classList.toggle('open');
   });
-});
-// Transition options
-document.querySelectorAll('[data-tweak="transition"]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const v = btn.dataset.value;
-    document.querySelectorAll('[data-tweak="transition"]').forEach(b => b.classList.toggle('is-active', b === btn));
-    pushEdits({ transition: v });
-    applyTransition(v);
+  navLinksEl.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinksEl.classList.remove('active');
+      navToggle.classList.remove('open');
+    });
   });
-});
-// Magenta swatches
-document.querySelectorAll('[data-tweak="magenta"]').forEach(sw => {
-  sw.addEventListener('click', () => {
-    const v = sw.dataset.value;
-    document.querySelectorAll('[data-tweak="magenta"]').forEach(b => b.classList.toggle('is-active', b === sw));
-    pushEdits({ magenta: v });
-    document.documentElement.style.setProperty('--m-magenta', v);
-    // rebuild dashboard and word particles to pick new magenta
-    if (slideB.classList.contains('is-active')) refreshDashboard();
-    if (slideC.classList.contains('is-active')) { stopWord(); startWord(); }
-  });
-});
-
-// Set initial active states from defaults
-function syncTweakUI() {
-  document.querySelectorAll(`[data-tweak="autoplay"]`).forEach(b => b.classList.toggle('is-active', b.dataset.value === state.autoplay));
-  document.querySelectorAll(`[data-tweak="transition"]`).forEach(b => b.classList.toggle('is-active', b.dataset.value === state.transition));
-  document.querySelectorAll(`[data-tweak="magenta"]`).forEach(b => b.classList.toggle('is-active', b.dataset.value === state.magenta));
-  document.documentElement.style.setProperty('--m-magenta', state.magenta);
-  applyTransition(state.transition);
 }
-syncTweakUI();
+
+// ═══════════════════════════════════════════════════════════════
+// STORY SECTION — scroll counter (01 / 04)
+// ═══════════════════════════════════════════════════════════════
+const storyBlocks = document.querySelectorAll('.story__block');
+const storyCounter = document.getElementById('storyCounter');
+if (storyBlocks.length && storyCounter) {
+  const storyObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          storyCounter.textContent = entry.target.dataset.step;
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+  storyBlocks.forEach(b => storyObserver.observe(b));
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FADE-UP OBSERVER — cards, steps, contact
+// ═══════════════════════════════════════════════════════════════
+const fadeObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  },
+  { threshold: 0.12 }
+);
+document.querySelectorAll(
+  '.founder-card, .step, .contact__info, .contact__form, .pillar, .funnel__item, .faq__item'
+).forEach(el => {
+  el.classList.add('fade-up');
+  fadeObserver.observe(el);
+});
+
+// ═══════════════════════════════════════════════════════════════
+// FORM HANDLER — envía a Apps Script + dispara GA4/Ads/Meta
+// ═══════════════════════════════════════════════════════════════
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypoW9aBeY-aKSb-SjGulKsM6Dn3jZFfd8ydyZcNRvrG2zcjFFjdHOoG4vmjyDJbco0/exec';
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const btnSpan = btn.querySelector('span') || btn;
+    const originalText = btnSpan.textContent;
+
+    btnSpan.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+      return match ? match[2] : '';
+    }
+    function getFbc() {
+      const stored = getCookie('_fbc');
+      if (stored) return stored;
+      const params = new URLSearchParams(window.location.search);
+      const fbclid = params.get('fbclid');
+      if (fbclid) return 'fb.1.' + Date.now() + '.' + fbclid;
+      return '';
+    }
+
+    const data = {
+      nombre: form.querySelector('input[name="nombre"]').value,
+      email: form.querySelector('input[name="email"]').value,
+      telefono: form.querySelector('input[name="telefono"]').value,
+      empresa: form.querySelector('input[name="empresa"]').value,
+      servicio: form.querySelector('select[name="servicio"]').value,
+      mensaje: form.querySelector('textarea[name="mensaje"]').value,
+      user_agent: navigator.userAgent,
+      page_url: window.location.href,
+      fbp: getCookie('_fbp'),
+      fbc: getFbc(),
+    };
+
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+      .then(() => {
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', {
+            event_category: 'formulario',
+            event_label: data.servicio,
+            value: 1,
+          });
+          gtag('event', 'conversion', {
+            send_to: 'AW-18069208452/aE-xCKiw6pwcEIT7iKhD',
+          });
+        }
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', {
+            content_name: data.servicio,
+            content_category: 'formulario_contacto',
+          });
+        }
+        btnSpan.textContent = '¡Enviado!';
+        btn.style.background = 'var(--m-lime)';
+        btn.style.color = 'var(--ink)';
+        form.reset();
+        setTimeout(() => {
+          btnSpan.textContent = originalText;
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.disabled = false;
+        }, 3000);
+      })
+      .catch(() => {
+        btnSpan.textContent = 'Error, intenta de nuevo';
+        btn.style.background = '#ef4444';
+        setTimeout(() => {
+          btnSpan.textContent = originalText;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 3000);
+      });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// WHATSAPP CLICK TRACKING — floating + footer
+// ═══════════════════════════════════════════════════════════════
+document.querySelectorAll('.wa-link').forEach((link) => {
+  link.addEventListener('click', () => {
+    const source = link.dataset.waSource || 'unknown';
+    if (typeof gtag === 'function') {
+      gtag('event', 'whatsapp_click', {
+        event_category: 'contacto',
+        event_label: source,
+        value: 1,
+      });
+      gtag('event', 'conversion', {
+        send_to: 'AW-18069208452/IO_iCJGakp8cEIT7iKhD',
+      });
+    }
+    if (typeof fbq === 'function') {
+      fbq('track', 'Contact', {
+        contact_method: 'whatsapp',
+        source: source,
+      });
+    }
+  });
+});
