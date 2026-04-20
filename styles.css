@@ -1093,63 +1093,122 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   FOUNDERS
+   FOUNDERS — 3 co-founders (Growth, Performance, Creative)
 ═══════════════════════════════════════════════════════════════ */
 .founders-section { padding: 100px 0; background: var(--paper); }
+.founders-section .section-title { margin-bottom: 12px; }
+.founders__title { margin-top: 10px; }
+.founders__lead {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--ink-60);
+  max-width: 640px;
+  margin-bottom: 40px;
+  line-height: 1.55;
+}
 .founders {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  margin-top: 32px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 8px;
 }
 .founder-card {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 24px;
-  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
   border: 1px solid var(--ink-10);
   border-radius: var(--radius-lg);
   background: var(--paper);
-  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
 }
 .founder-card:hover {
   border-color: var(--m-magenta);
   box-shadow: 0 0 0 1px var(--m-magenta), 0 12px 40px rgba(255, 0, 168, 0.1);
+  transform: translateY(-4px);
 }
-.founder-card__photo { width: 180px; height: 220px; overflow: hidden; border-radius: var(--radius); background: var(--paper-alt); }
-.founder-card__img { width: 100%; height: 100%; object-fit: cover; }
+.founder-card__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--paper-alt);
+}
+.founder-card__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.founder-card__photo--placeholder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 0, 168, 0.06), rgba(0, 229, 255, 0.06)),
+    repeating-linear-gradient(45deg, var(--paper-alt) 0 8px, var(--paper) 8px 16px);
+  border: 1px dashed var(--ink-20);
+}
+.founder-card__placeholder-initial {
+  font-family: var(--font-wordmark);
+  font-weight: 800;
+  font-size: 3.2rem;
+  letter-spacing: -0.04em;
+  color: var(--ink-40);
+  line-height: 1;
+}
+.founder-card__placeholder-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-40);
+}
+.founder-card__placeholder-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-40);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.founder-card__info { display: flex; flex-direction: column; flex: 1; }
 .founder-card__info h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   letter-spacing: -0.02em;
   color: var(--ink);
   margin-bottom: 4px;
 }
 .founder-card__role {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   color: var(--m-magenta);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
+  font-weight: 500;
   display: block;
   margin-bottom: 14px;
 }
+.founder-card:nth-child(2) .founder-card__role { color: var(--m-cyan); }
+.founder-card:nth-child(3) .founder-card__role { color: var(--m-lime); }
+
 .founder-card__info p {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--ink-60);
-  line-height: 1.6;
+  line-height: 1.55;
   margin-bottom: 16px;
+  flex: 1;
 }
-.founder-card__links { display: flex; gap: 12px; align-items: center; }
-.founder-card__icon { height: 28px; width: auto; opacity: 0.85; transition: opacity 0.2s var(--ease); }
+.founder-card__links { display: flex; gap: 12px; align-items: center; margin-top: auto; }
+.founder-card__icon { height: 26px; width: auto; opacity: 0.85; transition: opacity 0.2s var(--ease); }
 .founder-card__links a:hover .founder-card__icon { opacity: 1; }
 
 @media (max-width: 900px) {
-  .founders { grid-template-columns: 1fr; gap: 24px; }
-  .founder-card { grid-template-columns: 120px 1fr; padding: 16px; }
-  .founder-card__photo { width: 120px; height: 160px; }
+  .founders { grid-template-columns: 1fr; gap: 20px; }
+  .founder-card__photo { aspect-ratio: 3 / 3.2; max-width: 320px; margin: 0 auto; width: 100%; }
+  .founders__lead { margin-bottom: 28px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════

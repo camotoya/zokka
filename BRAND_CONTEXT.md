@@ -17,19 +17,29 @@ Traemos las mejores prácticas de marketing de las grandes compañías — Unile
 
 ---
 
-## 2. Fundadores
+## 2. Fundadores (3 co-founders, 3 disciplinas)
 
 ### Camilo Otoya — Co-Founder & Growth
-- Especialista en estrategia digital, datos y performance marketing
+- Lidera estrategia, datos y crecimiento
 - +10 años en grandes compañías: Unilever, Henkel, Habi (unicornio)
 - Cargos: Brand Manager, Net Revenue Management Head, Consumer & Market Insights Manager, Product Marketing Manager, Director de Mercadeo
 - Lanzó marcas de consumo masivo como got2b en LATAM
 - LinkedIn: linkedin.com/in/camilootoya
+- Certificación: Meta Certified Media Buying Professional
 
-### Leonardo Herrera — Co-Founder & Creative
-- Experto en branding, contenido audiovisual y estrategia creativa
-- Impulsa la identidad visual y narrativa de marca de cada proyecto
+### Leonardo Herrera — Co-Founder & Performance
+- Lidera paid media y optimización de campañas
+- Experto en Meta Ads, Google Ads, TikTok Ads con atribución unificada
+- Focus: ROAS, CAC y el motor de performance
 - LinkedIn: linkedin.com/in/leonardo-herrera-275112118/
+- Certificación: Meta Certified Media Buying Professional
+
+### Carlos Estrada — Co-Founder & Creative
+- Lidera dirección creativa y narrativa de marca
+- Experto en branding, identidad visual y contenido audiovisual
+- Incluye producción con inteligencia artificial
+- LinkedIn: pendiente
+- Foto: pendiente (actualmente placeholder en la web)
 
 ---
 
