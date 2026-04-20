@@ -325,118 +325,35 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <header class="hero" id="hero" data-transition="dust" data-screen-label="01 Hero">
+  <!-- HERO — Wordmark único -->
+  <header class="hero" id="hero">
     <div class="hero__smoke" id="heroSmoke"></div>
 
-    <div class="hero__carousel">
+    <div class="hero__content container">
+      <div class="slide__tag">
+        Agencia de Marketing Digital
+        <span class="sep">·</span> IA-native
+        <span class="sep">·</span> México &amp; Colombia
+      </div>
 
-      <!-- SLIDE A — PROMPT AGENT -->
-      <section class="slide slide--a" id="slideA" data-screen-label="Slide A · Precision">
-        <div class="slide__layout container">
-          <div>
-            <span class="slide__eyebrow">
-              <span class="slide__eyebrow-dot"></span>
-              Precision — IA-native · data-driven
-            </span>
-            <h1 class="slide__h1">
-              Hacemos que tu marca
-              <span class="verb">destaque,</span>
-              <span class="verb">conecte</span> y
-              <span class="verb">venda.</span>
-            </h1>
-            <p class="slide__sub">
-              Nuestro agente analiza tu marca, tu presupuesto y tu mercado — y recomienda el mix exacto que va a crecer. Cada decisión, respaldada en datos.
-            </p>
-            <div class="slide__ctas">
-              <a href="#contacto" class="btn btn--primary hero__cta"><span>Agenda una consulta gratis →</span></a>
-              <a href="#services" class="btn btn--ghost">Ver servicios</a>
-            </div>
-          </div>
+      <div class="wordmark-stage" id="wordStage">
+        <canvas class="wordmark-canvas" id="wordCanvas"></canvas>
+        <div class="wordmark-fallback">Makkete</div>
+      </div>
 
-          <div class="agent">
-            <div class="agent__titlebar">
-              <div class="agent__titlebar-left">
-                <span class="agent__titlebar-dot"></span>
-                makkete.agent
-              </div>
-              <div>v1.0 · live</div>
-            </div>
-            <div id="agentLog"></div>
-          </div>
-        </div>
-      </section>
+      <h1 class="hero__h1">
+        Hacemos que tu marca
+        <span class="verb">destaque,</span>
+        <span class="verb">conecte</span> y
+        <span class="verb">venda.</span>
+      </h1>
 
-      <!-- SLIDE B — DASHBOARD TIPOGRÁFICO -->
-      <section class="slide slide--b" id="slideB" data-screen-label="Slide B · Data">
-        <div class="slide__layout container">
-          <div class="dash-head">
-            <div class="dash-head-left">
-              <span class="dash-live"></span>
-              Makkete / agent · en vivo
-            </div>
-            <div id="dashClock">00:00:00</div>
-          </div>
-          <h1 class="dash-h1">
-            Hacemos que tu marca <br>
-            destaque, conecte y venda.
-          </h1>
-          <div class="dash-rows">
-            <div class="dash-row">
-              <span class="dash-row-verb">destaque,</span>
-              <svg class="dash-row-spark" aria-hidden="true"></svg>
-              <div class="dash-row-metric">
-                <span class="dash-row-metric-num">184,220</span>
-                <span class="dash-row-metric-lbl">impresiones · <span class="dash-row-delta">+14.2%</span></span>
-              </div>
-            </div>
-            <div class="dash-row">
-              <span class="dash-row-verb">conecte</span>
-              <svg class="dash-row-spark" aria-hidden="true"></svg>
-              <div class="dash-row-metric">
-                <span class="dash-row-metric-num">12.4%</span>
-                <span class="dash-row-metric-lbl">engagement · <span class="dash-row-delta">+2.6pp</span></span>
-              </div>
-            </div>
-            <div class="dash-row">
-              <span class="dash-row-verb">y venda.</span>
-              <svg class="dash-row-spark" aria-hidden="true"></svg>
-              <div class="dash-row-metric">
-                <span class="dash-row-metric-num">342</span>
-                <span class="dash-row-metric-lbl">conversiones · <span class="dash-row-delta">+23%</span></span>
-              </div>
-            </div>
-          </div>
-          <div class="slide__ctas">
-            <a href="#contacto" class="btn btn--primary hero__cta"><span>Agenda una consulta gratis →</span></a>
-            <a href="#services" class="btn btn--ghost">Ver servicios</a>
-          </div>
-        </div>
-      </section>
+      <p class="hero__hint">Pasa el cursor sobre el logo.</p>
 
-      <!-- SLIDE C — WORDMARK IA (primera visualmente por SLIDE_ORDER [2,0,1]) -->
-      <section class="slide slide--c is-active" id="slideC" data-screen-label="Slide C · Brand">
-        <div class="slide__layout container">
-          <div class="slide__tag">
-            Agencia de Marketing Digital
-            <span class="sep">·</span> IA-native
-            <span class="sep">·</span> México &amp; Colombia
-          </div>
-          <div class="wordmark-stage" id="wordStage">
-            <canvas class="wordmark-canvas" id="wordCanvas"></canvas>
-            <div class="wordmark-fallback">Makkete</div>
-          </div>
-          <p class="slide__sub">
-            Hacemos que tu marca destaque, conecte y venda. <br>
-            Pasa el cursor sobre el logo.
-          </p>
-          <div class="slide__ctas">
-            <a href="#contacto" class="btn btn--primary hero__cta"><span>Agenda una consulta gratis →</span></a>
-            <a href="#services" class="btn btn--ghost">Ver servicios</a>
-          </div>
-        </div>
-      </section>
-
+      <div class="hero__ctas">
+        <a href="#contacto" class="btn btn--primary hero__cta"><span>Agenda una consulta gratis →</span></a>
+        <a href="#services" class="btn btn--ghost">Ver servicios</a>
+      </div>
     </div>
 
     <!-- STATS STRIP -->
@@ -448,28 +365,38 @@
         <div class="hero__stat"><span class="hero__stat-num">2</span> países · MX / CO</div>
       </div>
     </div>
+  </header>
 
-    <!-- CAROUSEL CONTROLS -->
-    <div class="hero__controls">
-      <div class="hero__label">
-        <span class="hero__label-num" id="heroLabelNum">01 / 03</span>
-        <span id="heroLabelName">Brand · generativo</span>
+  <!-- AGENT SECTION — IA first demo (full width stacked) -->
+  <section class="agent-section" id="agent">
+    <div class="agent-section__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="agent-section__head">
+        <span class="agent-section__eyebrow">
+          <span class="agent-section__eyebrow-dot"></span>
+          IA-first · data-driven
+        </span>
+        <h2 class="agent-section__h2">
+          IA que recomienda,<br>
+          <em>humanos que ejecutan.</em>
+        </h2>
+        <p class="agent-section__sub">
+          Nuestro agente analiza tu marca, tu presupuesto y tu mercado — y recomienda el mix exacto que va a crecer. Nosotros ejecutamos cada decisión, respaldada en datos. Sin black-boxes y sin humo.
+        </p>
       </div>
-      <div class="hero__dots">
-        <button class="hero__dot is-active" aria-label="Slide 1"><span class="hero__dot-fill"></span></button>
-        <button class="hero__dot" aria-label="Slide 2"><span class="hero__dot-fill"></span></button>
-        <button class="hero__dot" aria-label="Slide 3"><span class="hero__dot-fill"></span></button>
-      </div>
-      <div class="hero__arrows">
-        <button class="hero__arrow" id="heroPrev" aria-label="Anterior">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-        </button>
-        <button class="hero__arrow" id="heroNext" aria-label="Siguiente">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-        </button>
+
+      <div class="agent agent--full">
+        <div class="agent__titlebar">
+          <div class="agent__titlebar-left">
+            <span class="agent__titlebar-dot"></span>
+            makkete.agent
+          </div>
+          <div>v1.0 · live</div>
+        </div>
+        <div id="agentLog"></div>
       </div>
     </div>
-  </header>
+  </section>
 
   <!-- PALETTE STRIP -->
   <section class="palette">
